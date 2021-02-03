@@ -19,8 +19,3 @@ class ListVideo(APIView):
         return Response(video_json.errors, status=400)
 
 
-class DetailVideo(APIView):
-    def get(self,request,pk):
-        video =  Video.objects.get(pk=pk)
-        video_json = VideoSerializer(video)
-        return Response(video_json.data)
