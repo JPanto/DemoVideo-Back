@@ -10,7 +10,6 @@ class ListVideo(APIView):
         video_json = VideoSerializer(videos, many=True)
         return Response(video_json.data)
 
-
     def post(self, request):
         video_json = VideoSerializer(data=request.data) #Unmarshal
         if video_json.is_valid():
@@ -22,4 +21,4 @@ class DetailVideo(APIView):
     def get(self,request,pk):
         video = Video.objects.get(pk=pk)
         video_json = VideoSerializer(video)
-        return Response(video_json.data)
+        return Response(video_json.data, status=200)
