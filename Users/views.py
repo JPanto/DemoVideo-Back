@@ -23,8 +23,6 @@ class RegisterAPI(generics.GenericAPIView):
 
 
 # Login API
-
-
 class LoginAPI(KnoxLoginView):
     permission_classes = (permissions.AllowAny,)
 

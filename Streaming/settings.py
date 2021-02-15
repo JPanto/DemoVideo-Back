@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'knox',
     'corsheaders',
-    'Videos'
+    'Files'
 ]
 
 MIDDLEWARE = [
@@ -78,8 +78,13 @@ WSGI_APPLICATION = 'Streaming.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'sql_server.pyodbc',
+        'NAME': 'DEMO',
+        'HOST': 'DESKTOP-RCIECSN',
+        'USER': 'daniel',
+        'PASSWORD': 'orion12358',
+
+        'OPTIONS': {'driver': 'ODBC Driver 17 for SQL Server',}
     }
 }
 
