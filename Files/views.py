@@ -1,7 +1,7 @@
-from .models import Files
+from .models import Files, TypeFile
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .serializers import FileSerializer
+from .serializers import FileSerializer, TypeFileSerializer
 
 
 class ListFiles(APIView):
@@ -23,3 +23,10 @@ class DetailFiles(APIView):
         file = Files.objects.get(pk=pk)
         file_json = FileSerializer(file)
         return Response(file_json.data, status=200)
+
+
+class TypeFileAPI(APIView):
+    def get(self, request):
+        type_file = TypeFile.objects.all()
+        type_file_json = TypeFileSerializer(type_file, many=True)
+        return Response(type_file_json.data)

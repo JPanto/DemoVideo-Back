@@ -38,7 +38,11 @@ INSTALLED_APPS = [
     'rest_framework',
     'knox',
     'corsheaders',
-    'Files'
+    'Files',
+    'Event',
+    'Location',
+    'Skill',
+    'Users',
 ]
 
 MIDDLEWARE = [
@@ -131,15 +135,22 @@ REST_FRAMEWORK = {
         'knox.auth.TokenAuthentication',
     ]
 }
+
+
 CORS_ORIGIN_ALLOW_ALL = True  # If this is used then `CORS_ORIGIN_WHITELIST` will not have any effect
+
 CORS_ALLOW_CREDENTIALS = True
+
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:4200',
 ]  # If this is used, then not need to use `CORS_ORIGIN_ALLOW_ALL = True`
+
 CORS_ORIGIN_REGEX_WHITELIST = [
     'http://localhost:4200',
 ]
 
-# file uload parameters
+# file upload parameters
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+AUTH_USER_MODEL = 'Users.Account'

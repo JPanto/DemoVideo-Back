@@ -1,11 +1,9 @@
 from django.contrib.auth import authenticate
 from django.utils.translation import gettext_lazy as _
-from rest_framework.authtoken.serializers import AuthTokenSerializer
-
 from rest_framework import serializers
 
 
-class CustomAuthTokenSerializer(AuthTokenSerializer):
+class CustomAuthTokenSerializer(serializers.Serializer):
     username = serializers.CharField(
         label=_("Username"),
         write_only=True
