@@ -10,7 +10,7 @@ class Event(models.Model):
     value = models.IntegerField
     date_start = models.CharField(max_length=10)
     date_end = models.CharField(max_length=10)
-    slug = models.CharField(max_length=220)
+    slug = models.SlugField(max_length=220)
     id_file = models.ForeignKey('Files.Files', on_delete=models.CASCADE)
     id_state = models.ForeignKey('StateEvent', on_delete=models.CASCADE)
     id_city = models.ForeignKey('Location.City', on_delete=models.CASCADE)

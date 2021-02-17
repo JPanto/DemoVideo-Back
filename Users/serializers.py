@@ -15,7 +15,7 @@ class AccountSerializer(serializers.ModelSerializer):
             'gender',
             'id_city',
             'id_type_login',
-            'id_type_user',
+            'id_type_account',
             'id_rol'
         )
 
@@ -27,7 +27,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         fields = (
             'id_account',
             'username',
-            'first_name',
+            'full_name',
             'email',
             'password',
             'gender',
@@ -40,10 +40,17 @@ class RegisterSerializer(serializers.ModelSerializer):
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
-        user = Account.objects.create_user(validated_data['username'],
+        user = Account.objects.create_user(id_account=validated_data['id_account'],
+                                           username=validated_data['username'],
+                                           full_name=validated_data['full_name'],
                                            email=validated_data['email'],
-                                           first_name=validated_data['first_name'],
-                                           password=validated_data['password']
+                                           password=validated_data['password'],
+                                           gender=validated_data['gender'],
+                                           id_city=validated_data['id_city'],
+                                           id_type_login=validated_data['id_type_login'],
+                                           id_type_account=validated_data['id_type_account'],
+                                           id_rol=validated_data['id_rol'],
+                                           id_type_doc=validated_data['id_type_doc'],
                                            )
         return user
 
