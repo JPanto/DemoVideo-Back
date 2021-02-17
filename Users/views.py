@@ -1,11 +1,15 @@
 from rest_framework import generics, permissions
-from django.contrib.auth import login
 from rest_framework.response import Response
+
+from django.contrib.auth import login
 from knox.models import AuthToken
-#from rest_framework.authtoken.serializers import AuthTokenSerializer
-from Users.customSerializersAuthToken import CustomAuthTokenSerializer
 from knox.views import LoginView as KnoxLoginView
-from Users.serializers import AccountSerializer, RegisterSerializer
+
+from Users.customSerializersAuthToken import CustomAuthTokenSerializer
+from Users.serializers import AccountSerializer, RegisterSerializer, \
+                            TypeLoginSerializer, TypeAccountSerializer, \
+                            RolSerializer, TypeDocSerializer
+from .models import TypeLogin, TypeAccount, Rol, TypeDoc
 
 
 # Register API
@@ -32,3 +36,35 @@ class LoginAPI(KnoxLoginView):
         user = serializer.validated_data['user']
         login(request, user)
         return super(LoginAPI, self).post(request, format=None)
+
+
+# List Type Login
+class ListTypeLogin(generics.GenericAPIView):
+    def get(self, request):
+        type_login = TypeLogin.objects.all()
+        type_login_json = TypeLoginSerializer(type_login, many=True)
+        return Response(type_login_json.data)
+
+
+# List Type Account
+class ListTypeAccount(generics.GenericAPIView):
+    def get(self, request):
+        type_account = TypeAccount.objects.all()
+        type_account_json = TypeAccountSerializer(type_account, many=True)
+        return Response(type_account_json.data)
+
+
+# List Rol
+class ListRol(generics.GenericAPIView):
+    def get(self, request):
+        rol = Rol.objects.all()
+        rol_json = RolSerializer(rol, many=True)
+        return Response(rol_json.data)
+
+
+# List Type Doc
+class ListTypeDoc(generics.GenericAPIView):
+    def get(self, request):
+        type_doc = TypeDoc.objects.all()
+        type_doc_json = TypeDocSerializer(type_doc, many=True)
+        return Response(type_doc_json.data)

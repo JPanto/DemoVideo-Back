@@ -59,7 +59,7 @@ class TypeLoginSerializer(serializers.ModelSerializer):
     class Meta:
         model = TypeLogin
         fields = (
-            'id_type_login',
+            'id',
             'name'
         )
 

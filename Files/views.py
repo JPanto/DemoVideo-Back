@@ -25,7 +25,7 @@ class DetailFiles(APIView):
         return Response(file_json.data, status=200)
 
 
-class TypeFileAPI(APIView):
+class ListTypeFile(APIView):
     def get(self, request):
         type_file = TypeFile.objects.all()
         type_file_json = TypeFileSerializer(type_file, many=True)

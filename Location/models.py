@@ -10,4 +10,3 @@ class City(models.Model):
     id_city = models.AutoField
     name = models.CharField(max_length=50)
     id_country = models.ForeignKey('Country', on_delete=models.CASCADE)
-

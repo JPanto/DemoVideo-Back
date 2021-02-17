@@ -23,6 +23,7 @@ from django.urls import path, include
 urlpatterns = [
     url(r'^', include('Users.urls')),
     url(r'^', include('Files.urls')),
+    url(r'^', include('Location.urls')),
     #path('api/files/', FileUploadView.as_view(), name='upload_file'),
 
 ]+ static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
