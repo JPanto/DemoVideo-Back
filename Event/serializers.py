@@ -4,25 +4,15 @@ from .models import Event, StateEvent, EventSkill, EventUser
 
 class EventSerializer(serializers.ModelSerializer):
     class Meta:
-        event = Event
+        model = Event
         fields = (
-            'id_event',
-            'name',
-            'description',
-            'value',
-            'date_start',
-            'date_end',
-            'slug',
-            'id_file',
-            'id_state',
-            'id_city',
-            'id_user'
+            '__all__'
         )
 
 
 class StateEventSerializer(serializers.ModelSerializer):
     class Meta:
-        state_event = StateEvent
+        model = StateEvent
         fields = (
             'id_state_event',
             'name'
@@ -31,7 +21,7 @@ class StateEventSerializer(serializers.ModelSerializer):
 
 class EventSkillSerializer(serializers.ModelSerializer):
     class Meta:
-        event_skill = EventSkill
+        model = EventSkill
         fields = (
             'id_event',
             'id_skill'
@@ -40,7 +30,7 @@ class EventSkillSerializer(serializers.ModelSerializer):
 
 class EventUserSerializer(serializers.ModelSerializer):
     class Meta:
-        event_user = EventUser
+        model = EventUser
         fields = (
             'id_event_user',
             'description',

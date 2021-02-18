@@ -3,8 +3,10 @@ from django.contrib.auth.models import AbstractUser
 
 
 class Account(AbstractUser):
-    id_account = models.BigIntegerField(primary_key=True,  default='NotInGroup')
-    username = models.CharField(unique=True, max_length=40)
+    id_account = models.BigIntegerField(primary_key=True,
+                                        error_messages={'unique': 'Esta identificación de usuario ya está registrada'})
+    username = models.CharField(unique=True, max_length=40,
+                                error_messages={'unique': 'Este nombre de usuario ya está registrado'})
     full_name = models.CharField(max_length=150)
     email = models.EmailField(max_length=255)
     date_create = models.DateField(auto_now_add=True)

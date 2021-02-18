@@ -1,4 +1,5 @@
 from django.conf.urls import url
+
 from Users.views import RegisterAPI, LoginAPI, ListTypeLogin, \
                         ListTypeAccount, ListRol, ListTypeDoc
 from knox import views as knox_views

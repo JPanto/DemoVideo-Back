@@ -12,8 +12,8 @@ from Users.serializers import AccountSerializer, RegisterSerializer, \
 from .models import TypeLogin, TypeAccount, Rol, TypeDoc
 
 
-# Register API
 class RegisterAPI(generics.GenericAPIView):
+    """ API Register"""
     serializer_class = RegisterSerializer
 
     def post(self, request, *args, **kwargs):
@@ -26,8 +26,8 @@ class RegisterAPI(generics.GenericAPIView):
         })
 
 
-# Login API
 class LoginAPI(KnoxLoginView):
+    """ API Login """
     permission_classes = (permissions.AllowAny,)
 
     def post(self, request, format=None):
