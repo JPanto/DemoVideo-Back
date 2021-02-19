@@ -35,23 +35,35 @@ class RegisterSerializer(serializers.ModelSerializer):
 class TypeLoginSerializer(serializers.ModelSerializer):
     class Meta:
         model = TypeLogin
-        fields = ['__all__']
+        fields = [
+            'id',
+            'name'
+        ]
 
 
 class TypeAccountSerializer(serializers.ModelSerializer):
     class Meta:
         model = TypeAccount
-        fields = ['__all__']
+        fields = [
+            'id',
+            'name'
+        ]
 
 
 class RolSerializer(serializers.ModelSerializer):
     class Meta:
         model = Rol
-        fields = ['__all__']
+        fields = [
+            'id',
+            'name'
+        ]
 
 
 class TypeDocSerializer(serializers.ModelSerializer):
     class Meta:
         model = TypeDoc
-        fields = ['__all__']
+        fields = [
+            'id',
+            'name'
+        ]
 
