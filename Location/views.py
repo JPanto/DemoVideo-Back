@@ -12,6 +12,14 @@ class ListCity(APIView):
         return Response(city_json.data)
 
 
+class CityAPI(APIView):
+    def get(self, request, fk):
+        """ Filter all cities by country """
+        cities = City.objects.filter(id_country=fk)
+        city_json = CitySerializer(cities, many=True)
+        return Response(city_json.data, status=200)
+
+
 class ListCountry(APIView):
     def get(self, request):
         countries = Country.objects.all()

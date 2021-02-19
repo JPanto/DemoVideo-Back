@@ -1,8 +1,9 @@
 from rest_framework import serializers
-from .models import Event, StateEvent, EventSkill, EventUser
+from .models import Event, StateEvent, EventUser
 
 
 class EventSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Event
         fields = (
@@ -14,17 +15,7 @@ class StateEventSerializer(serializers.ModelSerializer):
     class Meta:
         model = StateEvent
         fields = (
-            'id_state_event',
-            'name'
-        )
-
-
-class EventSkillSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = EventSkill
-        fields = (
-            'id_event',
-            'id_skill'
+            '__all__'
         )
 
 
@@ -32,10 +23,31 @@ class EventUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = EventUser
         fields = (
-            'id_event_user',
-            'description',
-            'date',
-            'id_file',
-            'id_event',
-            'id_user'
+            '__all__'
         )
+
+# TODO: Verificar serializer para obtener objetos participaciones
+class EventFullSerializer(serializers.ModelSerializer):
+    participations = EventUserSerializer(many=True, read_only=True)
+    model = Event
+    fields = [
+        'id_event',
+        'participations'
+    ]
+
+
+# class EventFullSerializer(serializers.ModelSerializer):
+#     entries = EventUserSerializer()
+#
+#     class Meta:
+#         model = Event
+#         fields = [
+#             'id_event',
+#             'name',
+#             'description',
+#             'value',
+#             'date_start',
+#             'date_end',
+#             'slug',
+#             'skills'
+#         ]

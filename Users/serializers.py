@@ -1,42 +1,19 @@
 from rest_framework import serializers
-from .models import Account, TypeAccount, TypeLogin, Rol, AccountSkill, TypeDoc
+from .models import Account, TypeAccount, TypeLogin, Rol, TypeDoc
 
 
-# User Serializer
 class AccountSerializer(serializers.ModelSerializer):
+    """ User Serializer """
     class Meta:
         model = Account
-        fields = (
-            'id_account',
-            'username',
-            'full_name',
-            'email',
-            'date_create',
-            'gender',
-            'id_city',
-            'id_type_login',
-            'id_type_account',
-            'id_rol'
-        )
+        exclude = ['password']
 
 
-# Register Serializer
 class RegisterSerializer(serializers.ModelSerializer):
+    """ Register Serializer """
     class Meta:
         model = Account
-        fields = (
-            'id_account',
-            'username',
-            'full_name',
-            'email',
-            'password',
-            'gender',
-            'id_city',
-            'id_type_login',
-            'id_type_account',
-            'id_rol',
-            'id_type_doc'
-        )
+        exclude = ['date_create']
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
@@ -58,43 +35,23 @@ class RegisterSerializer(serializers.ModelSerializer):
 class TypeLoginSerializer(serializers.ModelSerializer):
     class Meta:
         model = TypeLogin
-        fields = (
-            'id',
-            'name'
-        )
+        fields = ['__all__']
 
 
 class TypeAccountSerializer(serializers.ModelSerializer):
     class Meta:
         model = TypeAccount
-        fields = (
-            'id_type_account',
-            'name'
-        )
+        fields = ['__all__']
 
 
 class RolSerializer(serializers.ModelSerializer):
     class Meta:
         model = Rol
-        fields = (
-            'id_rol',
-            'name'
-        )
+        fields = ['__all__']
 
 
 class TypeDocSerializer(serializers.ModelSerializer):
     class Meta:
         model = TypeDoc
-        fields = (
-            'id_type_doc',
-            'name'
-        )
+        fields = ['__all__']
 
-
-class AccountSkillSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = AccountSkill
-        fields = (
-            'id_account',
-            'id_skill'
-        )

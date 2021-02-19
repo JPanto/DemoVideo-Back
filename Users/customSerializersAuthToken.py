@@ -14,7 +14,7 @@ class CustomAuthTokenSerializer(serializers.Serializer):
         label=_("Password"),
         style={'input_type': 'password'},
         trim_whitespace=False,
-        write_only=True
+        write_only= True
     )
     token = serializers.CharField(
         label=_("Token"),

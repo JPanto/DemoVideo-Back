@@ -1,16 +1,19 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from Skill.models import Skill
 
 
 class Account(AbstractUser):
     id_account = models.BigIntegerField(primary_key=True,
-                                        error_messages={'unique': 'Esta identificación de usuario ya está registrada'})
+                                        error_messages={'unique': 'Esta identificación de usuario ya está registrada'},
+                                        )
     username = models.CharField(unique=True, max_length=40,
                                 error_messages={'unique': 'Este nombre de usuario ya está registrado'})
     full_name = models.CharField(max_length=150)
     email = models.EmailField(max_length=255)
     date_create = models.DateField(auto_now_add=True)
     gender = models.BooleanField(default=True, null=False)
+    skills = models.ManyToManyField(Skill)
     id_city = models.ForeignKey('Location.City', on_delete=models.CASCADE, null=False)
     id_type_login = models.ForeignKey('TypeLogin', on_delete=models.CASCADE, null=False)
     id_type_account = models.ForeignKey('TypeAccount', on_delete=models.CASCADE, null=False)
@@ -42,6 +45,3 @@ class TypeDoc(models.Model):
     name = models.CharField(max_length=20)
 
 
-class AccountSkill(models.Model):
-    id_account = models.ForeignKey('Account', on_delete=models.CASCADE)
-    id_skill = models.ForeignKey('Skill.Skill', on_delete=models.CASCADE)
