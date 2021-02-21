@@ -34,20 +34,3 @@ class EventFullSerializer(serializers.ModelSerializer):
         'id_event',
         'participations'
     ]
-
-
-# class EventFullSerializer(serializers.ModelSerializer):
-#     entries = EventUserSerializer()
-#
-#     class Meta:
-#         model = Event
-#         fields = [
-#             'id_event',
-#             'name',
-#             'description',
-#             'value',
-#             'date_start',
-#             'date_end',
-#             'slug',
-#             'skills'
-#         ]
